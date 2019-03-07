@@ -51,4 +51,17 @@ function _get_plugin_root_dir() {
 	return __DIR__;
 }
 
+/**
+ * Load the Admin Bar.
+ *
+ * @since 1.0.0
+ */
+function load_admin_bar() {
+	require_once __DIR__ . '/src/class-admin-bar.php';
+	$config = require __DIR__ . '/config/admin-bar.php';
+
+	( new Admin_Bar( $config ) )->init();
+}
+
 require_once __DIR__ . '/vendor/autoload.php';
+load_admin_bar();
