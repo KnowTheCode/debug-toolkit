@@ -44,6 +44,7 @@ if ( version_compare( phpversion(), '5.6', '<' ) ) {
  * Gets the plugin's root directory.
  *
  * @since 1.0.0
+ * @access private
  *
  * @return string
  */
@@ -51,14 +52,15 @@ function _get_plugin_root_dir() {
 	return __DIR__;
 }
 
+// Load the files and Composer.
+require_once __DIR__ . '/vendor/autoload.php';
+
 /**
  * Load the Admin Bar.
  *
  * @since 1.0.0
  */
 function load_admin_bar() {
-	require_once __DIR__ . '/src/class-admin-bar.php';
-
 	/**
 	 * Filter the admin bar configuration parameters.
 	 *
@@ -71,5 +73,4 @@ function load_admin_bar() {
 	( new Admin_Bar( $config ) )->init();
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
 load_admin_bar();
