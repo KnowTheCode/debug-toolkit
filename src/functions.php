@@ -1,12 +1,18 @@
 <?php
 /**
- * VarDumper Functions - used in your code:
+ * Kint and VarDumper Functions.
+ *
+ * VarDumper functions:
  *      vdump()
  *      vd()
  *      vdd()
  *      vddd()
  *
- * Note: The `v` prefix separates it from the Kint version.
+ *      Note: The `v` prefix separates it from the Kint version.
+ *
+ * Kint functions:
+ *      dd()
+ *      ddd()
  *
  * @package     KnowTheCode\DebugToolkit
  * @since       1.0.0
@@ -23,7 +29,7 @@ require_once __DIR__ . '/class-vardumper-helpers.php';
 
 if ( ! function_exists( 'vdump' ) ) {
 	/**
-	 * Dumps the given variable(s).
+	 * VarDumper: Dumps the given variable(s).
 	 *
 	 * @since 1.0.0
 	 *
@@ -36,14 +42,35 @@ if ( ! function_exists( 'vdump' ) ) {
 
 if ( ! function_exists( 'vd' ) ) {
 	/**
-	 * Dumps the given variable(s).
+	 * VarDumper: Dumps the given variable.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param mixed $var Variable to dump.
 	 */
 	function vd( $var ) {
-		VarDumper_Helpers::dump( $var, __FUNCTION__ );
+		VarDumper_Helpers::dump( $var );
+	}
+}
+
+if ( ! function_exists( 'dd' ) ) {
+	/**
+	 * Kint: Dumps the given variable(s) and then ends the execution of the program.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function dd( $var ) {
+		$vars = func_get_args();
+
+		if ( count( $vars ) > 1 ) {
+			call_user_func_array( [ Kint::class, 'dump' ], $vars );
+		} else {
+			Kint::dump( $var );
+		}
+
+		die();
 	}
 }
 
@@ -60,9 +87,30 @@ if ( ! function_exists( 'vdd' ) ) {
 	}
 }
 
+if ( ! function_exists( 'ddd' ) ) {
+	/**
+	 * Kint: Dumps the given variable and then ends the execution of the program.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function ddd( $var ) {
+		$vars = func_get_args();
+
+		if ( count( $vars ) > 1 ) {
+			call_user_func_array( [ Kint::class, 'dump' ], $vars );
+		} else {
+			Kint::dump( $var );
+		}
+
+		die();
+	}
+}
+
 if ( ! function_exists( 'vddd' ) ) {
 	/**
-	 * Dumps the given variable(s) and then ends the execution of the program.
+	 * VarDumper: Dumps the given variable and then ends the execution of the program.
 	 *
 	 * @since 1.0.0
 	 *
