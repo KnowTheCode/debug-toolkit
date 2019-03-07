@@ -14,6 +14,7 @@ namespace KnowTheCode\DebugToolkit;
 
 /**
  * Class Admin_Bar
+ *
  * @package KnowTheCode\DebugToolkit
  */
 class Admin_Bar {
@@ -42,8 +43,7 @@ class Admin_Bar {
 	public function init() {
 		add_filter( 'get_user_option_admin_color', [ $this, 'set_local_development_admin_color_scheme' ], 5 );
 		add_action( 'admin_bar_menu', [ $this, 'add_admin_bar_notice' ], 9999 );
-		add_action( 'admin_head', [ $this, 'render_admin_bar_css' ], 9999 );
-		add_action( 'wp_head', [ $this, 'render_admin_bar_css' ], 9999 );
+		add_action( 'admin_bar_init', [ $this, 'render_admin_bar_css' ], 9999 );
 	}
 
 	/**
@@ -93,12 +93,42 @@ class Admin_Bar {
 			return;
 		}
 
-		ob_start();
+		$css =
+			"
+			#wpadminbar {
+				background-color: %s !important;
+			}
+		
+			#wp-admin-bar-environment-notice {
+				display: none;
+			}
+		
+			#wpadminbar .ab-item,
+			#wpadminbar a.ab-item,
+			#wpadminbar > #wp-toolbar span.ab-label,
+			#wpadminbar > #wp-toolbar span.noticon,
+			.adminbar--environment-notice {
+				color: #fff;
+			}
+		
+			@media only screen and ( min-width: 800px ) {
+				#wp-admin-bar-environment-notice {
+					display: block;
+				}
+		
+				#wp-admin-bar-environment-notice .ab-item {
+					background-color: %s !important;
+				}
+		
+				#wp-admin-bar-environment-notice:hover .ab-item {
+					background-color: %s !important;
+					color: #fff;
+				}
+			}
+			";
 
-		include $this->config['css_file'];
+		$css = vsprintf( $css, $this->config['colors'] );
 
-		$css_pattern = ob_get_clean();
-
-		vprintf( $css_pattern, $this->config['colors'] );
+		wp_add_inline_style( 'admin-bar', $css );
 	}
 }

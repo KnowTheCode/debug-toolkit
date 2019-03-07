@@ -19,6 +19,7 @@ use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class VarDumper_Helpers
+ *
  * @package KnowTheCode\DebugToolkit
  */
 class VarDumper_Helpers {
@@ -98,7 +99,7 @@ class VarDumper_Helpers {
 	 * @param string $key Optional. Parameter's key to return.
 	 *
 	 * @return mixed
-	 * @throw  InvalidArgumentException If the key does not exist, an error is thrown.
+	 * @throws  InvalidArgumentException If the key does not exist, an error is thrown.
 	 */
 	private static function get_config( $key = '' ) {
 		if ( empty( static::$config ) ) {
@@ -109,7 +110,7 @@ class VarDumper_Helpers {
 			 *
 			 * @param array Array of configuration parameters for the VarDump component.
 			 */
-			static::$config = apply_filters( 'debugtoolkit_set_html_dumper_config', (array) require _get_plugin_root_dir() . '/config/var-dumper.php' );
+			static::$config = apply_filters( 'debug_toolkit_set_html_dumper_config', (array) require _get_plugin_root_dir() . '/config/var-dumper.php' );
 		}
 
 		if ( empty( $key ) ) {
@@ -117,10 +118,11 @@ class VarDumper_Helpers {
 		}
 
 		if ( ! array_key_exists( $key, static::$config ) ) {
-			$message = __( 'The key [$s] does not exist in the config:', 'devtoolkit' );
+			$message = __( 'The key [$s] does not exist in the config:', 'debugtoolkit' );
 			$message = sprintf( $message, $key );
 			throw new InvalidArgumentException(
-				esc_html( $message . ': ' ) . print_r( static::$config, true )
+				esc_html( $message . ': ' ) .
+				print_r( static::$config, true ) // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 			);
 		}
 

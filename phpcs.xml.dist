@@ -47,8 +47,7 @@
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="KnowTheCode\DebugToolkit"/>
-				<element value="debugtoolkit_"/>
-                <element value="_genesis"/>
+				<element value="debug_toolkit"/>
 			</property>
 		</properties>
 	</rule>

@@ -17,7 +17,9 @@
 
 use KnowTheCode\DebugToolkit\VarDumper_Helpers;
 
-require_once __DIR__ . '/class-vardumper.php';
+require_once __DIR__ . '/class-vardumper-helpers.php';
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Function names are intentational here.
 
 if ( ! function_exists( 'vdump' ) ) {
 	/**

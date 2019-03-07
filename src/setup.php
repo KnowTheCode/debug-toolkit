@@ -33,7 +33,7 @@ function _setup_plugin() {
  */
 function _setup_whoops() {
 	$whoops = new Run();
-	$whoops->pushHandler( new PrettyPageHandler );
+	$whoops->pushHandler( new PrettyPageHandler() );
 	$whoops->register();
 }
 
