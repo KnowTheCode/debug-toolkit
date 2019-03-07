@@ -24,10 +24,6 @@
 		"sort-order": true
 	},
 	"autoload": {
-		"files": [
-			"src/functions.php",
-			"src/class-admin-bar.php"
-		],
 		"psr-4": {
 			"KnowTheCode\\DebugToolkit\\": "src"
 		},

@@ -54,23 +54,7 @@ function _get_plugin_root_dir() {
 
 // Load the files and Composer.
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/setup.php';
+require_once __DIR__ . '/src/vardumper-functions.php';
 
-/**
- * Load the Admin Bar.
- *
- * @since 1.0.0
- */
-function load_admin_bar() {
-	/**
-	 * Filter the admin bar configuration parameters.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param array $config Array of configuration parameters.
-	 */
-	$config = apply_filters( 'debug_toolkit_admin_bar_config', (array) require __DIR__ . '/config/admin-bar.php' );
-
-	( new Admin_Bar( $config ) )->init();
-}
-
-load_admin_bar();
+_setup_plugin();
