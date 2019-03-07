@@ -95,7 +95,7 @@ class Admin_Bar {
 
 		ob_start();
 
-		include _get_plugin_root_dir() . '/assets/css/admin-bar.html';
+		include $this->config['css_file'];
 
 		$css_pattern = ob_get_clean();
 

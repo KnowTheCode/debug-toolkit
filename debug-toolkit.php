@@ -58,7 +58,15 @@ function _get_plugin_root_dir() {
  */
 function load_admin_bar() {
 	require_once __DIR__ . '/src/class-admin-bar.php';
-	$config = require __DIR__ . '/config/admin-bar.php';
+
+	/**
+	 * Filter the admin bar configuration parameters.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $config Array of configuration parameters.
+	 */
+	$config = apply_filters( 'debug_toolkit_admin_bar_config', (array) require __DIR__ . '/config/admin-bar.php' );
 
 	( new Admin_Bar( $config ) )->init();
 }

@@ -19,4 +19,5 @@ return [
 		'message_background_color'   => '#cb4b14',
 		'message_hover_color'        => '#1b202d',
 	],
+	'css_file' => _get_plugin_root_dir() . '/assets/css/admin-bar.html',
 ];
