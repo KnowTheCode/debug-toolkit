@@ -94,7 +94,7 @@ class Admin_Bar {
 		}
 
 		$css =
-			"
+			'
 			#wpadminbar {
 				background-color: %s !important;
 			}
@@ -125,7 +125,7 @@ class Admin_Bar {
 					color: #fff;
 				}
 			}
-			";
+			';
 
 		$css = vsprintf( $css, $this->config['colors'] );
 
