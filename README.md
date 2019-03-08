@@ -23,7 +23,7 @@ Here's what you get:
 * [Better PHP Error Interface](#better-php-error-interface)
 * [Admin Bar Indicator](#admin-bar-indicator)
 
-[Watch an introductory video on Vimeo](https://vimeo.com/manage/322351688)
+[Watch an introductory video on Vimeo](https://vimeo.com/322351688)
 
 ## Better Variable Inspection
 
