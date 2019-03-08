@@ -125,3 +125,14 @@ if ( ! function_exists( 'vddd' ) ) {
 		VarDumper_Helpers::dump_and_die( $var );
 	}
 }
+
+if ( ! function_exists( 'trace' ) ) {
+	/**
+	 * Kint: Renders a backtrace at the point where this function is invoked.
+	 *
+	 * @since 1.0.0
+	 */
+	function trace() {
+		Kint::trace();
+	}
+}

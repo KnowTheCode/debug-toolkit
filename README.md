@@ -36,7 +36,7 @@ It depends.
 | Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
 | Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
 | Dumps plain text | na | `s( mixed $var [ , mixed $var2, ...] );` |
-| Dumps debug trace | na | `Kint::trace();` |
+| Dumps debug backtrace | na | `trace();` |
 
 For example:
 
@@ -138,6 +138,26 @@ add_action( 'loop_start', function() {
 ![Whoops error interface](docs/whoops.gif)
 
 You can learn more about Whoops by visiting [http://filp.github.io/whoops/](http://filp.github.io/whoops/).
+
+## Backtrace the Call Stack
+
+When debugging, there are times when you need to see the order in which functions were called that lead to a certain point in the program.  PHP offers a backtrace that traces back the execution order from the point when the function is invoked.
+
+In this plugin, you can use `trace();` to dump out the call stack that lead up to where you invoke that function.
+
+For example, if you added this code at the end of your theme's `functions.php` file:
+
+```php
+add_action( 'loop_start', function() {
+	trace();
+} );
+```
+
+the `trace()` renders as:
+
+![trace() gif](docs/trace.gif)
+
+Notice that the container is interactive.  Click on each call stack item and its associated code appears.  This is a powerful debugging tool to discover the execution order through your code.
 
 ## Admin Bar Indicator
 
