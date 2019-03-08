@@ -12,19 +12,57 @@ Code debug made easier and more enjoyable.
 
 == Description ==
 
+Code debug made easier and more enjoyable.  This WordPress plugin includes a suite of developer essential tools to debug your code:
 
-= Handy Tools =
+* [Whoops - the "PHP errors for cool kids"](http://filp.github.io/whoops/)
+* [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
+* [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
+* "DEBUG ACTIVE" indicator in the WordPress admin bar to let you know the plugin is activated.
 
-Some handy tools just for the PHP Developer:
+== Whoops - An Awesome PHP Error Tool ==
 
-* `d( $var );` to render a collapsible UI container which displays your variable data in "the most informative way"
-* `ddd( $var );` same as d() except that it also executes `die()` to halt execution.
+The built-in PHP error container is basic and not as helpful as it could be.  On top of that, it's rather ugly. Wouldn't you agree?
 
+Whoops gives you a cool interface that is helpful, interactive, and quite nice to look at.  Some features:
 
+* Provides the error message and links to search Google, DuckDuckGo, and Stack Overflow.
+* Shows the actual code where the error occurred.
+* Provides an interactive call stack.  Click each and the actual code appears in the viewer panel.
+* Environment and details including GET Data, POST Data, Files, Cookie, Session, Server/Request Data, Environment Variables, and Registered Handlers.
+
+== Handy Tools for Exploring Variable Values ==
+
+This plugin provides two different tools for exploring the value in a variable:
+
+* VarDumper from Symfony
+* Kint
+
+VarDumper provides a simple container that displays where you place it.
+
+Kint gathers all the data and displayed it at the bottom of the screen as a fixed position container.  It also provides a call stack, which can be handy, and tracing functionality if you need it.
+
+= Which one should you use? =
+
+It depends.
+
+1. You want to simply display the contents of a variable: Use VarDumper's functions, i.e. `vdump()`, `vd()`, `vdd()`, or `vddd()`.
+2. You want the call stack in addition to the variable:  Use Kint's functions: `d()`, `dd()`, or `ddd()`.
+
+= Functions =
+
+| Task      | VarDumper | Kint     |
+| :---        | :---    | :---  |
+| Dumps the given variable(s) | `vd( mixed $var );` | `d( mixed $var [ , mixed $var2, ...] );` |
+| Dumps the given variable(s) | `vdump( mixed $var );` | `Kint::dump( mixed $var [ , mixed $var2, ...] );` |
+| Dumps and dies   | `vdd( mixed $var );` | `dd( mixed $var [ , mixed $var2, ...] );` |
+| Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
+| Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
+| Dumps plain text | na | `s( mixed $var [ , mixed $var2, ...] );` |
+| Dumps debug trace | na | `Kint::trace();` |
 
 == Admin Bar ==
 
-"KINT ACTIVE" indicator displays in the WordPress admin bar to alert you when the plugin is active.
+"DEBUG ACTIVE" indicator displays in the WordPress admin bar to alert you when the plugin is active.
 
 == Installation ==
 

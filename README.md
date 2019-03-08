@@ -125,7 +125,7 @@ It renders as:
 
 The built-in PHP error container is basic and not as helpful as it could be.  On top of that, it's rather ugly. Wouldn't you agree?
 
-The Whoops package gives you a cool interface that is helpful, interactive, and quite nice to look at .
+The Whoops package gives you a cool interface that is helpful, interactive, and quite nice to look at.
 
 Consider the error this code would produce:
 

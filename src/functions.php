@@ -55,7 +55,7 @@ if ( ! function_exists( 'vd' ) ) {
 
 if ( ! function_exists( 'dd' ) ) {
 	// Add dd() to Kint.
-	Kint::$aliases[] = 'dd';
+	Kint::$aliases[] = 'dd'; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	/**
 	 * Kint: Dumps the given variable(s) and then ends the execution of the program.
 	 *
@@ -91,7 +91,7 @@ if ( ! function_exists( 'vdd' ) ) {
 
 if ( ! function_exists( 'ddd' ) ) {
 	// Add ddd() to Kint.
-	Kint::$aliases[] = 'ddd';
+	Kint::$aliases[] = 'ddd'; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 	/**
 	 * Kint: Dumps the given variable and then ends the execution of the program.
