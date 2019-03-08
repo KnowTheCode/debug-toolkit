@@ -39,13 +39,20 @@ It depends.
 
 | Task      | VarDumper | Kint     |
 | :---        | :---    | :---  |
+| Dumps the given variable(s) | `vdump( mixed $var );` | `dump( mixed $var [ , mixed $var2, ...] );` |
+| Dumps and dies   | `vdump_and_die( mixed $var );` | `dump_and_die( mixed $var [ , mixed $var2, ...] );` |
+
+>**TIP**
+>Use the full functions instead of the aliases.  Why?  It's easier to search your code to find where you put each of them. Searching for `d(`, for example, can be frustrating.  But searching for `dump(`, that will be a more targeted search.
+
+**Alias (shorthand) Functions**
+
+| Task      | VarDumper | Kint     |
+| :---        | :---    | :---  |
+| Dumps plain text | na | `s( mixed $var [ , mixed $var2, ...] );` |
 | Dumps the given variable(s) | `vd( mixed $var );` | `d( mixed $var [ , mixed $var2, ...] );` |
-| Dumps the given variable(s) | `vdump( mixed $var );` | `Kint::dump( mixed $var [ , mixed $var2, ...] );` |
 | Dumps and dies   | `vdd( mixed $var );` | `dd( mixed $var [ , mixed $var2, ...] );` |
 | Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
-| Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
-| Dumps plain text | na | `s( mixed $var [ , mixed $var2, ...] );` |
-| Dumps debug backtrace | na | `trace();` |
 
 For example:
 
@@ -159,9 +166,11 @@ To make backtracing easier, this plugin provides you with a `trace()` function a
 | Task      | VarDumper | Kint     |
 | :---        | :---    | :---  |
 | Dumps backtrace | na | `trace();` |
-| Dumps backtrace + given variable(s) | `vdtrace( mixed $var );` | `dtrace( mixed $var [ , mixed $var2, ...] );` |
-| Dumps backtrace + variable(s) and then dies   | `vddtrace( mixed $var );` | `ddtrace( mixed $var [ , mixed $var2, ...] );` |
-| Dumps backtrace + variable(s) and then dies   | `vdddtrace( mixed $var );` | `dddtrace( mixed $var [ , mixed $var2, ...] );` |
+| Dumps backtrace + given variable(s) | `trace_vdump( mixed $var );` | `trace_dump( mixed $var [ , mixed $var2, ...] );` |
+| Dumps backtrace + variable(s) and then dies   | `trace_dump_and_die()( mixed $var );` | `trace_dump_and_die()( mixed $var [ , mixed $var2, ...] );` |
+| Alias for trace and dump   | `trace_dump_and_die()( mixed $var );` | `traced()( mixed $var [ , mixed $var2, ...] );` |
+| Alias for trace and dump and die   | `tracevdd()( mixed $var );` | `tracedd()( mixed $var [ , mixed $var2, ...] );` |
+| Alternative alias for trace and dump and die   | `tracevddd()( mixed $var );` | `traceddd()( mixed $var [ , mixed $var2, ...] );` |
 
 The `trace();` function will render the call stack that lead up to where you invoke the function. For example, if you added this code at the end of your theme's `functions.php` file:
 

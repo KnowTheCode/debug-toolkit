@@ -11,11 +11,12 @@
 
 namespace KnowTheCode\DebugToolkit;
 
+use Kint;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
 /**
- * Description.
+ * Set up the plugin.
  *
  * @since  1.0.0
  * @access private
@@ -23,6 +24,7 @@ use Whoops\Run;
 function _setup_plugin() {
 	_setup_whoops();
 	_setup_admin_bar();
+	_register_kint_aliases();
 }
 
 /**
@@ -56,4 +58,34 @@ function _setup_admin_bar() {
 	$config = apply_filters( 'debug_toolkit_admin_bar_config', (array) require _get_plugin_root_dir() . '/config/admin-bar.php' );
 
 	( new Admin_Bar( $config ) )->init();
+}
+
+/**
+ * Register helper functions with Kint.
+ *
+ * Per Kint:
+ * "Some Kint features (Variable names, modifiers, mini trace) only work if Kint
+ * knows where it was called from. But Kint can't know that if it doesn't know
+ * what the helper function is called. Add your functions to `Kint::$aliases`."
+ *
+ * @since  1.0.0
+ * @access private
+ */
+function _register_kint_aliases() {
+	$aliases = [
+		'dump',
+		'dump_and_die',
+		'trace',
+		'trace_dump',
+		'trace_dump_and_die',
+		'dd',
+		'ddd',
+		'traced',
+		'tracedd',
+		'traceddd',
+	];
+
+	foreach ( $aliases as $alias ) {
+		Kint::$aliases[] = $alias; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+	}
 }
