@@ -139,3 +139,8 @@ add_action( 'loop_start', function() {
 
 You can learn more about Whoops by visiting [http://filp.github.io/whoops/](http://filp.github.io/whoops/).
 
+## Admin Bar Indicator
+
+As this tool is meant for development mode only, you need a way to know the plugin is enabled.  No problem. A "DEBUG MODE" indicator is added to the WordPress admin bar.
+
+![Admin Bar indicator](docs/admin-bar-indicator.gif)
