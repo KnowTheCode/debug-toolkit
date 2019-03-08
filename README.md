@@ -8,6 +8,15 @@ Tools include:
 * [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
 * [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
 
+## Table of Contents
+
+* [Debugging Variable Dumpers](#debugging-variable-dumpers)
+    * [Functions](#variable-dumper-functions)
+* [Backtracing the Call Stack](#backtracing-the-call-stack)
+    * [Functions](#trace-functions)
+* [Whoops - An Awesome PHP Error Tool](#whoops---an-awesome-php-error-tool)
+* [Admin Bar Indicator](#admin-bar-indicator)
+
 ## Debugging Variable Dumpers
 
 This plugin provides two different tools for dumping variables:
@@ -26,7 +35,7 @@ It depends.
 1. You want to simply display the contents of a variable: Use VarDumper's functions, i.e. `vdump()`, `vd()`, `vdd()`, or `vddd()`.
 2. You want the call stack in addition to the variable:  Use Kint's functions: `d()`, `dd()`, or `ddd()`.
 
-### Functions
+### Variable Dumper Functions
 
 | Task      | VarDumper | Kint     |
 | :---        | :---    | :---  |
@@ -139,13 +148,22 @@ add_action( 'loop_start', function() {
 
 You can learn more about Whoops by visiting [http://filp.github.io/whoops/](http://filp.github.io/whoops/).
 
-## Backtrace the Call Stack
+## Backtracing the Call Stack
 
 When debugging, there are times when you need to see the order in which functions were called that lead to a certain point in the program.  PHP offers a backtrace that traces back the execution order from the point when the function is invoked.
 
-In this plugin, you can use `trace();` to dump out the call stack that lead up to where you invoke that function.
+To make backtracing easier, this plugin provides you with a `trace()` function and combines it with the variable dumper functions.
 
-For example, if you added this code at the end of your theme's `functions.php` file:
+### Trace Functions
+
+| Task      | VarDumper | Kint     |
+| :---        | :---    | :---  |
+| Dumps backtrace | na | `trace();` |
+| Dumps backtrace + given variable(s) | `vdtrace( mixed $var );` | `dtrace( mixed $var [ , mixed $var2, ...] );` |
+| Dumps backtrace + variable(s) and then dies   | `vddtrace( mixed $var );` | `ddtrace( mixed $var [ , mixed $var2, ...] );` |
+| Dumps backtrace + variable(s) and then dies   | `vdddtrace( mixed $var );` | `dddtrace( mixed $var [ , mixed $var2, ...] );` |
+
+The `trace();` function will render the call stack that lead up to where you invoke the function. For example, if you added this code at the end of your theme's `functions.php` file:
 
 ```php
 add_action( 'loop_start', function() {

@@ -136,3 +136,105 @@ if ( ! function_exists( 'trace' ) ) {
 		Kint::trace();
 	}
 }
+
+if ( ! function_exists( 'dtrace' ) ) {
+	/**
+	 * Kint: Renders a backtrace at the point where this function is invoked AND dumps the given variable(s).
+	 *
+	 * Combines trace() and d().
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function dtrace( $var ) {
+		trace();
+
+		call_user_func_array( 'd', func_get_args() );
+	}
+}
+
+if ( ! function_exists( 'ddtrace' ) ) {
+	/**
+	 * Kint: Renders a backtrace at the point where this function is invoked AND dumps the given variable(s).
+	 *
+	 * Combines trace() and dd().
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function ddtrace( $var ) {
+		trace();
+
+		call_user_func_array( 'dd', func_get_args() );
+	}
+}
+
+if ( ! function_exists( 'dddtrace' ) ) {
+	/**
+	 * Kint: Renders a backtrace at the point where this function is invoked AND dumps the given variable(s).
+	 *
+	 * Combines trace() and ddd().
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function dddtrace( $var ) {
+		trace();
+
+		call_user_func_array( 'ddd', func_get_args() );
+	}
+}
+
+if ( ! function_exists( 'vdtrace' ) ) {
+	/**
+	 * Renders a backtrace at the point where this function is invoked AND dumps the given variable.
+	 *
+	 * Combines trace() and vd().
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function vdtrace( $var ) {
+		trace();
+
+		vd( $var );
+	}
+}
+
+if ( ! function_exists( 'vddtrace' ) ) {
+	/**
+	 * Renders a backtrace at the point where this function is invoked AND dumps the given variable.
+	 *
+	 * Combines trace() and vdd().
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function vddtrace( $var ) {
+		trace();
+
+		vdd( $var );
+	}
+}
+
+if ( ! function_exists( 'vdddtrace' ) ) {
+	/**
+	 * Renders a backtrace at the point where this function is invoked AND dumps the given variable.
+	 *
+	 * Combines trace() and vddd().
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $var Variable to dump.
+	 */
+	function vdddtrace( $var ) {
+		trace();
+
+		vddd( $var );
+	}
+}
