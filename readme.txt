@@ -12,14 +12,13 @@ Code debug made easier and more enjoyable.
 
 == Description ==
 
-Code debug made easier and more enjoyable.  This WordPress plugin includes a suite of developer essential tools to debug your code:
+Debug Toolkit makes debugging your code easier and more enjoyable.  It provides you with interactive and helpful tools:
 
-* [Whoops - the "PHP errors for cool kids"](http://filp.github.io/whoops/)
-* [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
-* [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
-* "DEBUG ACTIVE" indicator in the WordPress admin bar to let you know the plugin is activated.
+* Better PHP error interface from ([Whoops](http://filp.github.io/whoops/))
+* Better variable inspection - no need to use `var_dump`, `print_r`, or X-debug
+* An interactive way to back trace the program's execution order
 
-== Whoops - An Awesome PHP Error Tool ==
+== Better PHP Error Interface from Whoops ==
 
 The built-in PHP error container is basic and not as helpful as it could be.  On top of that, it's rather ugly. Wouldn't you agree?
 
@@ -30,35 +29,88 @@ Whoops gives you a cool interface that is helpful, interactive, and quite nice t
 * Provides an interactive call stack.  Click each and the actual code appears in the viewer panel.
 * Environment and details including GET Data, POST Data, Files, Cookie, Session, Server/Request Data, Environment Variables, and Registered Handlers.
 
-== Handy Tools for Exploring Variable Values ==
+See the tools in action in this video
 
-This plugin provides two different tools for exploring the value in a variable:
+https://vimeo.com/322351688
 
-* VarDumper from Symfony
-* Kint
+== Better Variable Inspection ==
+
+Though X-debug is powerful, it can be difficult to set up and run.  For that reason, it's common to dump or print out the variable to browser.  But the built-in display for the PHP `var_dump` and `print_r` is basic.
+
+This plugin includes both two very popular variable dumper tools:
+
+* [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
+* [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
 
 VarDumper provides a simple container that displays where you place it.
 
-Kint gathers all the data and displayed it at the bottom of the screen as a fixed position container.  It also provides a call stack, which can be handy, and tracing functionality if you need it.
+On the other hand, Kint provides a more powerful interface that gives you more information such as printing out the expression that was passed into it, the data type, memory size, and the value.
 
-= Which one should you use? =
+To make it even easier, the following utility functions are available for you to use in your code:
 
-It depends.
+= Available Functions for Inspecting Variable Values =
 
-1. You want to simply display the contents of a variable: Use VarDumper's functions, i.e. `vdump()`, `vd()`, `vdd()`, or `vddd()`.
-2. You want the call stack in addition to the variable:  Use Kint's functions: `d()`, `dd()`, or `ddd()`.
+Let's explore the functions that are available for you through this plugin.  We'll use the variable inspectors to dump `global $post`.
 
-= Functions =
+Note: You can pass in any variable or function that returns a value.
 
-| Task      | VarDumper | Kint     |
-| :---        | :---    | :---  |
-| Dumps the given variable(s) | `vd( mixed $var );` | `d( mixed $var [ , mixed $var2, ...] );` |
-| Dumps the given variable(s) | `vdump( mixed $var );` | `Kint::dump( mixed $var [ , mixed $var2, ...] );` |
-| Dumps and dies   | `vdd( mixed $var );` | `dd( mixed $var [ , mixed $var2, ...] );` |
-| Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
-| Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
-| Dumps plain text | na | `s( mixed $var [ , mixed $var2, ...] );` |
-| Dumps debug trace | na | `Kint::trace();` |
+Dumps the given variable(s):
+
+`global $post;
+
+// VarDumper
+vdump( $post );
+
+// Kint
+dump( $post );`
+
+ Dumps the given variable(s) and then exits the program's execution:
+
+`global $post;
+
+// VarDumper
+vdump_and_die( $post );
+
+// Kint
+dump_and_die( $post );`
+
+In addition, there are alias (shorthand) functions available for you if you prefer shorter function names:
+
+* `vd()` is an alias for `vdump()`
+* `vdd()` and `vdd()` are aliases for `vdump_and_die()`
+* `d()` is an alias for `dump()`
+* `dd()` and `ddd()` are aliases for `dump_and_die()`
+
+== Tracing Call Stack ==
+
+When debugging, there are times when you need to see the order in which functions were called that lead to a certain point in the program.  PHP offers a backtrace that traces back the execution order from the point when the function is invoked.
+
+To make backtracing easier, this plugin provides you with a `trace()` function and combines it with the variable inspect functions.
+
+For example, if you wanted to trace the call stack to the start of the loop in your theme's `functions.php` file, you could use this code:
+
+`add_action( 'loop_start', function() {
+	trace();
+} );`
+
+= Available Trace Functions =
+
+Place these functions at the point where you want to trace the call stack.
+
+* `trace();`
+* `trace_vdump();` - Combines `trace()` and `vdump()`
+* `trace_dump();` - Combines `trace()` and `dump()`
+* `trace_vdump_and_die();` - Combines `trace()` and `vdump_and_die()`
+* `trace_dump_and_die();` - Combines `trace()` and `dump_and_die()`
+
+In addition, there are alias (shorthand) functions available for you if you prefer shorter function names:
+
+* `tracevd();` - Combines `trace()` and `vd()`
+* `traced();` - Combines `trace()` and `d()`
+* `tracevdd();` - Combines `trace()` and `vdd()`
+* `tracedd();` - Combines `trace()` and `dd()`
+* `tracevddd();` - Combines `trace()` and `vddd()`
+* `traceddd();` - Combines `trace()` and `ddd()`
 
 == Admin Bar ==
 
@@ -72,23 +124,11 @@ It depends.
 2. Search for 'Debug Toolkit'
 3. Activate Debug Toolkit from your Plugins page.
 
-= Once Activated =
-
-Whenever you want to dump out the data within a variable, simply use `d( $var )` to replace when you do pre + var_dump().
-
-To dump and die, you use `ddd( $var );`.
-
 == Frequently Asked Questions ==
 
 = How do I use this utility? =
 
-When you are testing your code, you use d( $var ) in place of var_dump( $var ) and print_r( $var ).  No need to wrap it in pre's either.
-
-= What does it render in the browser? =
-
-Kint provides a handy UI that wraps up the data within the variable.  Click to open it up and see the data.
-
-See the [screenshot 1](http://wordpress.org/extend/plugins/kint-php-debugger/screenshots/) for an example.
+When you are testing or debugging your code, you can use any of the functions above in place of var_dump( $var ) and print_r( $var ).  No need to wrap it in pre's either.
 
 = What else does Kint provide to help me debug? =
 
@@ -104,9 +144,8 @@ Deactivate and delete this plugin.
 
 == Screenshots ==
 
-1. An example of what gets rendered in the browser when using 'd( $var )'.
-2. Profile example from Kint.
-3. "DEBUG ACTIVE" indicator in the WordPress admin bar.
+1. The results of running `vdump()` and `vdump_and_die()`.
+2. The results of running `dump()` and `dump_and_die()`.
 
 == ChangeLog ==
 

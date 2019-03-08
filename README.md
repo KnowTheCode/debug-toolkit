@@ -2,27 +2,33 @@
 
 Code debug made easier and more enjoyable.  This WordPress plugin includes a suite of developer essential tools to debug your code.
 
-Tools include:
+Here's what you get:
 
-* [Whoops - the "PHP errors for cool kids"](http://filp.github.io/whoops/)
-* [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
-* [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
+* Better PHP error interface from ([Whoops](http://filp.github.io/whoops/))
+* Better variable inspection - no need to use `var_dump`, `print_r`, or X-debug
+    * [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
+    * [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
+* An interactive way to back trace the program's execution order
 
 ## Table of Contents
 
-* [Debugging Variable Dumpers](#debugging-variable-dumpers)
+* [Better Variable Inspection](#better-variable-inspection)
     * [Functions](#variable-dumper-functions)
 * [Backtracing the Call Stack](#backtracing-the-call-stack)
     * [Functions](#trace-functions)
-* [Whoops - An Awesome PHP Error Tool](#whoops---an-awesome-php-error-tool)
+* [Better PHP Error Interface](#better-php-error-interface)
 * [Admin Bar Indicator](#admin-bar-indicator)
 
-## Debugging Variable Dumpers
+<iframe src="https://player.vimeo.com/video/322351688" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-This plugin provides two different tools for dumping variables:
+## Better Variable Inspection
 
-* VarDumper from Symfony
-* Kint
+Though X-debug is powerful, it can be difficult to set up and run.  For that reason, it's common to dump or print out the variable to browser.  But the built-in display for the PHP `var_dump` and `print_r` is basic.
+
+This plugin includes both two very popular variable dumper tools:
+
+* [VarDumper from Symfony](https://symfony.com/doc/current/components/var_dumper.html)
+* [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
 
 VarDumper provides a simple container that displays where you place it.
 
@@ -35,7 +41,7 @@ It depends.
 1. You want to simply display the contents of a variable: Use VarDumper's functions, i.e. `vdump()`, `vd()`, `vdd()`, or `vddd()`.
 2. You want the call stack in addition to the variable:  Use Kint's functions: `d()`, `dd()`, or `ddd()`.
 
-### Variable Dumper Functions
+### Variable Inspection Functions
 
 | Task      | VarDumper | Kint     |
 | :---        | :---    | :---  |
@@ -54,23 +60,21 @@ It depends.
 | Dumps and dies   | `vdd( mixed $var );` | `dd( mixed $var [ , mixed $var2, ...] );` |
 | Dumps and dies   | `vddd( mixed $var );` | `ddd( mixed $var [ , mixed $var2, ...] );` |
 
-For example:
+#### Examples
+
+Using the VarDumper functions:
 
 ```php
 add_action( 'loop_start', function() {
+	global $post;
 
-	echo '<h2>VarDumper</h2>';
-	echo '<pre><code>vd( get_the_title() );</code></pre>';
-	vd( get_the_title() );
+	$array = [
+		'ID'    => get_the_ID(),
+		'title' => get_the_title(),
+	];
 
-	echo '<h2>Kint</h2>';
-	echo '<pre><code>d( get_the_title() );</code></pre>';
-	d( get_the_title() );
-
-	echo '<h2>Kint</h2>';
-	echo '<pre><code>s( get_the_title() );</code></pre>';
-	s( get_the_title() );
-
+	vdump( $array );
+	vdump_and_die( $post );
 } );
 ```
 
@@ -78,47 +82,30 @@ It renders like this:
 
 ![screenshot 1](screenshot-1.png)
 
-Notice the subtle differences between the three different ways of dumping the title out to the browser:
-
-* VarDumper's `vd()` provides a very simple highlighter around the title.
-* Kint's `d()` is shown at the bottom of the screen and contains the function, string length, title, and call stack.
-* Kint's `s()` provides a similar display as `vd()` except that it also includes what was passed into the function (shown in the dashed box), string length, value (title), and where the function was called from in your code.
-
-#### How about for arrays, objects, etc?
-
-Here's the example code for `vd()`:
+Using the Kints functions:
 
 ```php
 add_action( 'loop_start', function() {
+	global $post;
+
 	$array = [
 		'ID'    => get_the_ID(),
 		'title' => get_the_title(),
 	];
 
-	vd( $array );
+	dump( $array );
+	dump_and_die( $post );
 } );
 ```
 
-It renders as:
+It renders like this:
 
-![screenshot of vd( $array )](screenshot-2.png)
+![screenshot 2](screenshot-2.png)
 
-Here's the example code for `d()`:
+Notice the subtle differences between them:
 
-```php
-add_action( 'loop_start', function() {
-	$array = [
-		'ID'    => get_the_ID(),
-		'title' => get_the_title(),
-	];
-
-	d( $array );
-} );
-```
-
-It renders as:
-
-![screenshot of d( $array )](screenshot-3.png)
+* VarDumper's functions provide a very simple highlighter container.
+* Kint is shown at the bottom of the screen.  Notice that it provides more information.
 
 Here's the example code for `s()`:
 
@@ -135,9 +122,9 @@ add_action( 'loop_start', function() {
 
 It renders as:
 
-![screenshot of s( $array )](screenshot-4.png)
+![screenshot of s( $array )](docs/s.png)
 
-## Whoops - An Awesome PHP Error Tool
+## Better PHP Error Interface from Whoops
 
 The built-in PHP error container is basic and not as helpful as it could be.  On top of that, it's rather ugly. Wouldn't you agree?
 
@@ -167,8 +154,8 @@ To make backtracing easier, this plugin provides you with a `trace()` function a
 | :---        | :---    | :---  |
 | Dumps backtrace | na | `trace();` |
 | Dumps backtrace + given variable(s) | `trace_vdump( mixed $var );` | `trace_dump( mixed $var [ , mixed $var2, ...] );` |
-| Dumps backtrace + variable(s) and then dies   | `trace_dump_and_die()( mixed $var );` | `trace_dump_and_die()( mixed $var [ , mixed $var2, ...] );` |
-| Alias for trace and dump   | `trace_dump_and_die()( mixed $var );` | `traced()( mixed $var [ , mixed $var2, ...] );` |
+| Dumps backtrace + variable(s) and then dies   | `trace_vdump_and_die()( mixed $var );` | `trace_dump_and_die()( mixed $var [ , mixed $var2, ...] );` |
+| Alias for trace and dump   | `trace_vdump_and_die()( mixed $var );` | `traced()( mixed $var [ , mixed $var2, ...] );` |
 | Alias for trace and dump and die   | `tracevdd()( mixed $var );` | `tracedd()( mixed $var [ , mixed $var2, ...] );` |
 | Alternative alias for trace and dump and die   | `tracevddd()( mixed $var );` | `traceddd()( mixed $var [ , mixed $var2, ...] );` |
 
