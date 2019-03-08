@@ -18,6 +18,8 @@ Debug Toolkit makes debugging your code easier and more enjoyable.  It provides 
 * Better variable inspection - no need to use `var_dump`, `print_r`, or X-debug
 * An interactive way to back trace the program's execution order
 
+This plugin requires a minimum of PHP 5.6.
+
 == Better PHP Error Interface from Whoops ==
 
 The built-in PHP error container is basic and not as helpful as it could be.  On top of that, it's rather ugly. Wouldn't you agree?
@@ -130,9 +132,9 @@ In addition, there are alias (shorthand) functions available for you if you pref
 
 When you are testing or debugging your code, you can use any of the functions above in place of var_dump( $var ) and print_r( $var ).  No need to wrap it in pre's either.
 
-= What else does Kint provide to help me debug? =
+= What version of PHP do I need? =
 
-As you can see the [screenshot 1](http://wordpress.org/extend/plugins/kint-php-debugger/screenshots/), besides the handy UI, it also provides you with a full call stack.  Click on the text below the UI to expand it out.
+PHP 5.6, 7.0, 7.1, 7.2, and up.
 
 = Can I run this on a live site? =
 

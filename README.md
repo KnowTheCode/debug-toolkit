@@ -10,6 +10,10 @@ Here's what you get:
     * [Kint - a modern and powerful PHP debugging helper](https://kint-php.github.io/kint/)
 * An interactive way to back trace the program's execution order
 
+## Requirements
+
+* PHP 5.6 and up
+
 ## Table of Contents
 
 * [Better Variable Inspection](#better-variable-inspection)
@@ -19,7 +23,7 @@ Here's what you get:
 * [Better PHP Error Interface](#better-php-error-interface)
 * [Admin Bar Indicator](#admin-bar-indicator)
 
-<iframe src="https://player.vimeo.com/video/322351688" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+[Watch an introductory video on Vimeo](https://vimeo.com/manage/322351688)
 
 ## Better Variable Inspection
 
