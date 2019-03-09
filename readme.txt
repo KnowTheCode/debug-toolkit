@@ -2,9 +2,10 @@
 Contributors: hellofromTonya
 Donate link: https://KnowTheCode.io
 Tags: debug, debugger, var_dump, print_r, backtrace, trace, debug_backtrace
-Requires at least: 3.5
+Requires at least: 4.9
 Tested up to: 5.1
 Stable tag: 1.0.0
+Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +18,6 @@ Debug Toolkit makes debugging your code easier and more enjoyable.  It provides 
 * Better PHP error interface from ([Whoops](http://filp.github.io/whoops/))
 * Better variable inspection - no need to use `var_dump`, `print_r`, or X-debug
 * An interactive way to back trace the program's execution order
-
-This plugin requires a minimum of PHP 5.6.
 
 == Better PHP Error Interface from Whoops ==
 
@@ -154,7 +153,9 @@ Deactivate and delete this plugin.
 == ChangeLog ==
 
 = Version 1.0.0 =
-
 * First release
 
 == Upgrade Notice ==
+
+= Version 1.0.0 =
+First release
