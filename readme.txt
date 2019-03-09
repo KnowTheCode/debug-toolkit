@@ -146,8 +146,10 @@ Deactivate and delete this plugin.
 
 == Screenshots ==
 
+1. The better PHP error interface from Whoops.
 1. The results of running `vdump()` and `vdump_and_die()`.
-2. The results of running `dump()` and `dump_and_die()`.
+1. The results of running `dump()` and `dump_and_die()`.
+1. The results of running `trace()`.
 
 == ChangeLog ==
 
