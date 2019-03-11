@@ -38,23 +38,11 @@ class Admin_Bar {
 	/**
 	 * Initializes by registering each hook's callback to the object.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 */
 	public function init() {
-		add_filter( 'get_user_option_admin_color', [ $this, 'set_local_development_admin_color_scheme' ], 5 );
 		add_action( 'admin_bar_menu', [ $this, 'add_admin_bar_notice' ], 9999 );
 		add_action( 'admin_bar_init', [ $this, 'render_admin_bar_css' ], 9999 );
-	}
-
-	/**
-	 * Force different admin color scheme when this plugin is active.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return string
-	 */
-	public function set_local_development_admin_color_scheme() {
-		return $this->config['color_scheme'];
 	}
 
 	/**
@@ -84,7 +72,7 @@ class Admin_Bar {
 	/**
 	 * Render the admin bar CSS.
 	 *
-	 * @since 1.0.0
+	 * @since 1.0.1
 	 *
 	 * @return void
 	 */
@@ -95,22 +83,10 @@ class Admin_Bar {
 
 		$css =
 			'
-			#wpadminbar {
-				background-color: %s !important;
-			}
-		
-			#wp-admin-bar-environment-notice {
-				display: none;
-			}
-		
-			#wpadminbar .ab-item,
-			#wpadminbar a.ab-item,
-			#wpadminbar > #wp-toolbar span.ab-label,
-			#wpadminbar > #wp-toolbar span.noticon,
 			.adminbar--environment-notice {
 				color: #fff;
 			}
-		
+							
 			@media only screen and ( min-width: 800px ) {
 				#wp-admin-bar-environment-notice {
 					display: block;

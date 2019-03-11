@@ -10,7 +10,7 @@
  * Plugin Name:       Debug Toolkit
  * Plugin URI:        https://wordpress.org/plugins/debug-toolkit
  * Description:       Code debug made easier and more enjoyable.  A suite of tools to help you debug your code.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            hellofromTonya
  * Author URI:        https://KnowTheCode.io
  * Text Domain:       debugtoolkit

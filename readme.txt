@@ -4,7 +4,7 @@ Donate link: https://KnowTheCode.io
 Tags: debug, debugger, var_dump, print_r, backtrace, trace, debug_backtrace
 Requires at least: 4.9
 Tested up to: 5.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -151,6 +151,10 @@ Deactivate and delete this plugin.
 1. The results of running `trace()`.
 
 == ChangeLog ==
+
+= Version 1.0.1 =
+* Removed changing the admin color palette.
+* Removed changing the admin bar background color.
 
 = Version 1.0.0 =
 * First release
