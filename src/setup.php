@@ -37,6 +37,11 @@ function _setup_whoops() {
 	$whoops = new Run();
 	$whoops->pushHandler( new PrettyPageHandler() );
 	$whoops->register();
+
+	if ( defined( 'DEBUG_TOOLKIT_WHOOPS_SILENCE_ERRORS' ) ) {
+		// Ignore some levels on all the website
+		$whoops->silenceErrorsInPaths( '/.*/', $levels = DEBUG_TOOLKIT_WHOOPS_SILENCE_ERRORS );
+	}
 }
 
 /**
