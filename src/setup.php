@@ -22,9 +22,11 @@ use Whoops\Run;
  * @access private
  */
 function _setup_plugin() {
-	_setup_whoops();
-	_setup_admin_bar();
-	_register_kint_aliases();
+	if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
+		_setup_whoops();
+		_setup_admin_bar();
+		_register_kint_aliases();
+	}
 }
 
 /**
