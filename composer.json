@@ -6,15 +6,18 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": "^5.6 || ^8.2.1",
+		"composer/installers": "^2.2",
 		"filp/whoops": "^2.14",
-		"symfony/var-dumper": "^6.2",
-		"kint-php/kint": "^5.0"
+		"kint-php/kint": "^5.0",
+		"symfony/var-dumper": "^6.2"
 	},
 	"config": {
 		"sort-order": true,
 		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"composer/installers": true
+		},
+		"sort-packages": true
 	},
 	"autoload": {
 		"psr-4": {
