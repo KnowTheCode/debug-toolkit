@@ -6,15 +6,14 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"php": "^5.6 || ^7",
-		"composer/installers": "^1",
+		"composer/installers": "^1.6.0",
 		"filp/whoops": "^2.3",
 		"symfony/var-dumper": "^3.4",
 		"kint-php/kint": "^3.1"
 	},
 	"require-dev": {
-		"php": "^5.6 || ^7",
 		"brain/monkey": "^2",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
 		"phpcompatibility/phpcompatibility-wp": "^2",
 		"phpunit/phpunit": "^5",
 		"roave/security-advisories": "dev-master",
@@ -22,7 +21,11 @@
 		"wp-coding-standards/wpcs": "^1"
 	},
 	"config": {
-		"sort-order": true
+		"sort-order": true,
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	},
 	"autoload": {
 		"psr-4": {
